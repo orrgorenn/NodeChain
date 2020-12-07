@@ -39,7 +39,9 @@ class Blockchain {
     this.pendingTrans = [];
   }
 
-  createTrans(trans) {
+  addTrans(trans) {
+    if (!trans.fromAddr || !trans.toAddr || trans.amount === 0) throw new Error("Transaction must contain all details.");
+    if (!trans.isValid()) throw new Error("Transaction is not valid.");
     this.pendingTrans.push(trans);
   }
 
@@ -61,6 +63,8 @@ class Blockchain {
     for (let i = 1; i < this.chain.length; i++) {
       const currBlock = this.chain[i];
       const prevBlock = this.chain[i - 1];
+
+      if (!currBlock.validateTrans()) return false;
       if (currBlock.currentHash !== currBlock.calcHash()) return false;
       if (currBlock.prevHash !== prevBlock.currentHash) return false;
       return true;

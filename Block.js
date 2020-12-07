@@ -21,6 +21,13 @@ class Block {
             this.currentHash = this.calcHash();
         }
     }
+
+    validateTrans() {
+        for (const trans of this.trans) {
+            if (!trans.isValid()) return false;
+        }
+        return true;
+    }
 }
 
 module.exports.Block = Block;

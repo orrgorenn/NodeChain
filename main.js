@@ -1,5 +1,10 @@
 const { Blockchain } = require("./Blockchain");
 const { Transaction } = require("./Transaction");
+const EC = require("elliptic").ec;
+const ec = new EC("secp256k1");
+const env = require("dotenv").config();
+
+const myKey = ec.keyFromPrivate(process.env.PRVKEY);
 
 var gorenCoin = new Blockchain();
 
