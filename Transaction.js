@@ -13,16 +13,16 @@ class Transaction {
     calcHash() {
         return sha256(
             this.fromAddr + this.toAddr + this.amount + this.timeStamp
-        );
+        ).toString();
     }
 
     signTrans(signKey) {
-        if (signKey.getPubKey('hex') !== this.fromAddr) {
+        if (signKey.getPublic('hex') !== this.fromAddr) {
             throw new Error("Trying to sign a foreign transaction.");
         }
         const hashTX = this.calcHash();
         const sign = signKey.sign(hashTX, "base64");
-        this.sign = sign.toDer('hex');
+        this.sign = sign.toDER('hex');
     }
 
     isValid() {

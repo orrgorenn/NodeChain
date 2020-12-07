@@ -5,17 +5,21 @@ const ec = new EC("secp256k1");
 const env = require("dotenv").config();
 
 const myKey = ec.keyFromPrivate(process.env.PRVKEY);
+const walletAddr = myKey.getPublic('hex');
 
 var gorenCoin = new Blockchain();
 
-gorenCoin.createTrans(new Transaction("address1", "address2", 50));
+// Create, Sign and add a new TX
+const tx1 = new Transaction(walletAddr, 'toAddr', 10);
+tx1.signTrans(myKey);
+gorenCoin.addTrans(tx1);
 
-gorenCoin.miningPendingTrans("orr");
-console.log(`Orr's balance is: ${gorenCoin.getBalanceOfAddr("orr")}`);
+gorenCoin.miningPendingTrans(walletAddr);
 
-gorenCoin.createTrans(new Transaction("orr", "address1", 11));
-gorenCoin.miningPendingTrans("orr");
+const tx2 = new Transaction(walletAddr, 'toAddr2', 30);
+tx2.signTrans(myKey);
+gorenCoin.addTrans(tx2);
 
-console.log(`Orr's balance is: ${gorenCoin.getBalanceOfAddr("orr")}`);
+gorenCoin.miningPendingTrans(walletAddr);
 
 console.log(JSON.stringify(gorenCoin, null, 2));

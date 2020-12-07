@@ -13,6 +13,7 @@
     "crypto-js": "^4.0.0",
     "dotenv": "^8.2.0",
     "elliptic": "^6.5.3",
+    "fully-connected-topology": "^1.1.1",
     "nodemon": "^2.0.6"
   }
 }
