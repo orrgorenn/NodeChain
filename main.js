@@ -1,4 +1,5 @@
-const { Blockchain, Block, Transaction } = require("./Blockchain");
+const { Blockchain } = require("./Blockchain");
+const { Transaction } = require("./Transaction");
 
 var gorenCoin = new Blockchain();
 
