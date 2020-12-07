@@ -1,0 +1,18 @@
+{
+  "name": "hit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Orr A. Goren",
+  "license": "ISC",
+  "dependencies": {
+    "crypto-js": "^4.0.0",
+    "dotenv": "^8.2.0",
+    "elliptic": "^6.5.3",
+    "nodemon": "^2.0.6"
+  }
+}
