@@ -8,6 +8,7 @@ class Transaction {
         this.toAddr = toAddr;
         this.amount = amount;
         this.timeStamp = Date.now();
+        this.hash = this.calcHash();
     }
 
     calcHash() {

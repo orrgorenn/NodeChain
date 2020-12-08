@@ -1,3 +1,5 @@
+const { MerkleTree } = require('merkletreejs');
+const { PartitionedBloomFilter } = require('bloom-filters');
 const sha256 = require("crypto-js/sha256");
 
 class Block {
@@ -7,6 +9,14 @@ class Block {
         this.prevHash = prevHash;
         this.currentHash = this.calcHash();
         this.nonce = 0;
+        let hashArray = [];
+        this.bFilter = new PartitionedBloomFilter(4, 5);
+        for (let tx of this.trans) {
+            if (typeof tx !== 'object') continue;
+            hashArray.push(tx.hash);
+            this.bFilter.add(tx.hash);
+        }
+        this.merkleTree = new MerkleTree(hashArray, sha256);
     }
 
     calcHash() {

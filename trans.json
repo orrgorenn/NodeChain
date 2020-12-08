@@ -1,3 +1,12 @@
-{
-    
-}
+[
+    {
+        "fromAddr": "goren",
+        "toAddr": "orr",
+        "amount": 50
+    },
+    {
+        "fromAddr": "orr",
+        "toAddr": "david",
+        "amount": 10
+    }
+]

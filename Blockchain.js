@@ -10,18 +10,12 @@ class Blockchain {
   }
 
   createGenesisBlock() {
-    return new Block(Date.now(), "Genesis block", "o");
+    return new Block(Date.now(), ["Genesis block"], "0");
   }
 
   getLastBlock() {
     return this.chain[this.chain.length - 1];
   }
-
-  /* addBlock(newBlock) {
-    newBlock.prevHash = this.getLastBlock().currentHash;
-    newBlock.mineBlock(this.diff);
-    this.chain.push(newBlock);
-  } */
 
   miningPendingTrans(minerAddr) {
     const rewardTX = new Transaction(null, minerAddr, this.reward);
